@@ -1,0 +1,27 @@
+<script>
+
+	function Person(fname,lname,age){
+		console.log("This is "+this);
+		this.fname=fname;
+		this.lname=lname;
+		this.age=age;
+		//return new Array(1,2,3);// What will happen if you return an array
+		//return 5; //What will happen if you return a primitive
+		this.sayName=function(){
+		 console.log("hi "+this.fname)
+		}//Why is having a function in the constructor a bad idea?
+	
+	}
+	var person1=new Person("abc","def",23) //what is the significance of new
+	var person2= Person("lmno","pqrd",33)//what happens if new is omitted?
+	
+	console.log(person1);
+	console.log(person2);
+	person1.sayName();	
+	console.log(person1 instanceof Person)
+	console.log(person1 instanceof Object)
+	var person3=Person("lmno","pqrd",33)
+	console.log(person3);
+
+
+</script>

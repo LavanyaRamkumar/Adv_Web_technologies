@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			var obj={
+				xhr:new XMLHttpRequest(),
+				async:function(event){
+					var movie=document.getElementById("mname").value;
+					this.xhr.onreadystatechange=this.update;
+					this.xhr.open("GET","xhrprepJSON.php?mname="+movie,true);
+					this.xhr.send();
+				},
+				update:function(){
+					if(this.readyState==4 && this.status==200){
+						var res=this.responseText;
+						/*The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string. */
+						var resJSON=JSON.parse(res);
+						document.getElementById("mlead").value=resJSON.lead;
+						document.getElementById("year").value=resJSON.year;
+						document.getElementById("gen").value=resJSON.genre;
+					
+					}
+				}
+			
+			
+			}
+		
+		</script>
+	</head>
+	<body>
+		Movie:<input type="text" id="mname" name="mname" onblur="obj.async()" />
+		Lead:<input type="text" id="mlead" name="mlead" disabled />
+		Genre:<input type="text" id="gen" name="gen" disabled />
+		Year:<input type="text" id="year" name="year" onblur="obj.async()" /> 
+		<input type="button" onclick="obj.async()" value="Click Me"/> 
+
+
+
+
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			function getDetails(){
+				
+				var srn=document.getElementById("srn")
+				var hf=document.getElementById("hframe")
+				var frm=document.getElementById("frm")
+				frm.submit();
+				//stat 1 inidcates that the ajax call is complete and //the subsequent call must be made to submit form data
+				stat=1;
+				
+			}
+			function displayDetails(res){
+				var resArr=res.split(";");
+				document.getElementById("sname").value=resArr[1];
+				document.getElementById("cgpa").value=resArr[2];
+				document.getElementById("srn").value=resArr[0];
+				
+			
+			}
+			function frmSubmit(){
+			var frm=document.getElementById("frm")
+			if(stat==1){
+					frm.action="submit.php";
+					frm.target="_self";
+					frm.submit();	
+				
+			}
+				
+			}
+		
+		</script>
+	</head>
+	<body>
+	//The target attribute of the form is 'name' attribute of the frame
+	<form id="frm" action="hf_post.php" method="POST" target="hframe">
+		SRN:<input type="text" name="srn" id="srn" onblur="getDetails()"/><br/>
+		Name:<input type="text" name="sname" id="sname"/><br/>
+		CGPA:<input type="text" name="cgpa" id="cgpa"/><br/>
+		<input type="submit"  onclick="frmSubmit()" value="SUBMIT"/>
+		<iframe id="hframe" name="hframe" height="0" width="0"></iframe>
+	</form>
+
+
+	</body>
+</html>

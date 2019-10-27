@@ -1,0 +1,32 @@
+<script>
+	function Rectangle(length,breadth){
+		this.length=length;
+		this.breadth=breadth;
+	}
+	Rectangle.prototype.calcArea=function(){
+			console.log(this.length*this.breadth);
+		}
+	Rectangle.prototype.toString=function(){
+			console.log("This rectangle has dimensions"+this.length+"*"+this.breadth);
+		}
+	
+	function Square(size){
+		//this.length=size;
+		//this.breadth=size;
+		//Constructor stealing. Equivalent to the super() call in Java
+		Rectangle.call(this,size,size)
+	}
+	//Why not do Square.prototype=Rectangle.prototype instead?
+	Square.prototype=new Rectangle();
+	Square.prototype.constructor=Square;
+	console.log(Square.prototype.constructor);
+	Square.prototype.toString=function(){
+			console.log("This square has dimensions"+this.length);
+		}
+	var sq=new Square(6);
+	sq.calcArea();
+	sq.toString();
+	
+
+
+</script>

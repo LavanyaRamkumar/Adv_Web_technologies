@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+		function checkUname(){
+		
+			var uname=document.getElementById("uname");
+			im=document.createElement("img");
+			//call to im.src in asynchronous
+			im.src="http://localhost/w2_18/vr/day4/vr_image.php?uname="+uname.value
+			//If the image loads successfully the 'load' event
+			//is triggered. If the image fails to load 'error' event is 
+			//triggered
+			im.onload=success;
+			im.onerror=failure;
+		}
+		function success(){
+			msgBox=document.getElementById("msg")
+			if(im.width==1){
+				msgBox.innerHTML="User Name not available"
+			}
+			else if (im.width==2){
+				msgBox.innerHTML="User name available"
+			}
+			else{
+				msgBox.innerHTML="Hmmm....???"
+			}
+		}
+		function failure(){
+				msgBox.innerHTML="Oooops....!!!"
+		}		
+		</script>
+	</head>
+	<body>
+	<form>
+		User Name: <input type="text" id="uname" onblur="checkUname()"/><br/>
+		<div id="msg"></div>
+		Password: <input type="text" id="pwd" /><br/>
+		Confirm Password: <input type="text" id="conf" /><br/>
+		<input type="button" id="sub" value="SAVE"/>
+	<form>	
+
+
+
+	</body>
+</html>

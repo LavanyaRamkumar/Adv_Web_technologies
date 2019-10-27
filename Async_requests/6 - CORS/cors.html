@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			var obj={
+				xhr:new XMLHttpRequest(),
+				getCaption:function(){
+					this.xhr.onreadystatechange=this.showCaption;
+					this.xhr.open("GET","http://localhost/w2_18/vr/day6/prep/cors.php",true);
+					this.xhr.send();
+				},
+				showCaption:function(){
+					if(this.readyState==4 && this.status==200){
+						document.getElementById("caption").innerHTML=this.responseText;
+					
+					}
+					this.abort();		
+				},
+				getVideo:function(){				
+					this.xhr.onreadystatechange=this.showVideo;
+					this.xhr.responseType="blob"
+					this.xhr.open("GET","http://localhost/w2_18/vr/day6/vid.php",true);
+					this.xhr.send();
+				},
+				showVideo:function(){
+					if(this.readyState==4 && this.status==200){
+						var vid=document.createElement("video");
+						vid.controls=true;
+						vid.autoplay=true;
+						var res=this.response;
+						vid.src=window.URL.createObjectURL(res);
+						document.body.appendChild(vid);
+					
+					}
+				
+				}
+			
+			}
+		//http://www.testsite.localhost:8080/
+		</script>
+	</head>
+	<body>
+		<img src="puzzle.jpeg" height=200 width=200 />
+		<div id="caption"></div>
+		<input type="button" value="GET CAPTION" onclick="obj.getCaption()"/>
+
+		<input type="button" value="GET VIDEO" onclick="obj.getVideo()" />
+
+
+	</body>
+</html>

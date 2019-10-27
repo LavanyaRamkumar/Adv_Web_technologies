@@ -1,0 +1,32 @@
+<script>
+
+	function Person(fname,lname,age){
+		console.log("This is "+this);
+		this.fname=fname;
+		this.lname=lname;
+		this.age=age;
+	}
+	//What is the prototype?
+	Person.prototype.sayName=function(greeting){
+		 console.log("hi "+this.fname)
+		 console.log("hi "+greeting)
+		}//What is the advantage of adding the function to the prototype?
+	var person1=new Person("abc","def",23)
+	var person2=new Person("lmno","pqrd",33)
+	
+	console.log(person1);
+	console.log(person2);
+	person1.sayName();
+	
+	
+	function Student(lname,fname,sem){
+		this.fname=fname;
+		this.lname=lname;
+		this.s=sem;
+	
+	}
+	//The following code shows the sayName function of Person being invoked from an instance of student
+	var student1=new Student("able","disable",23)
+	Person.prototype.sayName.call(student1,"hello")
+
+</script>

@@ -1,0 +1,16 @@
+Main differences
+
+1. JSON is less verbose. Saves bandwidth compared to XML.
+
+2. On the web, JSON is easily parsed compared to XML (which needs a separate parser)
+
+3. XML is rendered very cleanly by most browsers (highly readable and organized).
+
+4. XML can be automatically converted into html without writing a single line of JS.
+   (using XSL Stylesheets). JSON may need extensive js code to do the same.
+   
+5. One of the most significant advantages that XML has over JSON is its ability to
+   communicate mixed content, i.e. strings that contain structured markup.
+   
+6. In XML we can (and need) to create Namespaces explicitly. In JSON an object
+   is a namespace by itself. 

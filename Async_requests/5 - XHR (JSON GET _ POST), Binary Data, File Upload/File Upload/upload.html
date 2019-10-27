@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			var obj={
+				xhr:new XMLHttpRequest(),
+				uploadFile:function(){
+					var ipfile=document.getElementById("upload").files[0];
+				/*FormData:The FormData interface provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.send() method. It uses the same format a form would use if the encoding type were set to "multipart/form-data".	*/
+					var fd=new FormData();
+					fd.append("name","vidhu")//this is just to demonstrate that any key value pair can be included in FormData
+					fd.append("f",ipfile)
+					this.xhr.onreadystatechange=this.showResult;
+					this.xhr.open("POST","upload.php",true);
+					this.xhr.send(fd);
+				}
+			}
+		
+		</script>
+	</head>
+	<body>
+		<input type="file" id="upload"/>
+		<input type="button" onclick="obj.uploadFile()" id="uploadBtn" value="UPLOAD" />
+
+
+
+
+	</body>
+</html>

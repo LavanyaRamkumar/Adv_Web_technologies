@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			var obj={
+				xhr:new XMLHttpRequest(),
+				getDetails:function(){
+					var ip=document.getElementById("band").value;
+					this.xhr.onreadystatechange=this.showDetails;
+					this.xhr.open("GET","http://localhost/web2/day7/hist1.php?ip="+ip,true);
+					this.xhr.send();
+				},
+				showDetails:function(){
+				 if(this.readyState==4 && this.status==200){
+					console.log(this.responseText);
+					var res=JSON.parse(this.responseText);
+					res.band=document.getElementById("band").value;
+					document.getElementById("lead").value=res.lead;
+					document.getElementById("latest").value=res.latest;
+					document.getElementById("year").value=res.year;
+					history.pushState(res,"band details","http://localhost/web/band");
+				 }
+				
+				},
+				restore:function(e){
+				
+					histobj=e.state;
+					document.getElementById("lead").value=histobj.lead;
+					document.getElementById("latest").value=histobj.latest;
+					document.getElementById("year").value=histobj.year;
+					document.getElementById("band").value=histobj.band;
+					
+				
+				
+				}
+			}
+			window.onpopstate=obj.restore;	
+		</script>
+	</head>
+	<body>
+	
+		<form>
+			<label>Name<input type="text" id="band" onblur="obj.getDetails()"/></label><br/>
+			<label>Name<input type="text" id="lead" disabled /></label><br/>
+			<label>Name<input type="text" id="latest" disabled /></label><br/>
+			<label>Name<input type="text" id="year" disabled /></label>
+		</form>
+	</body>
+</html>

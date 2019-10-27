@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Full Secondary Column, 1/3 x 1/3 x 1/3 Main Column.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" >
+<link rel="stylesheet" type="text/css" href="styles.css" >
+<script>
+		function init(){
+		
+		xhr = new XMLHttpRequest();	
+			if(xhr)
+			{
+				xhr.onreadystatechange = getContent;
+				xhr.open("GET", "content.txt", true);
+				xhr.send(null);
+			}	
+		}
+		function getContent(){
+		
+		if(xhr.readyState=="4"&&xhr.status==200){
+				var arr=(xhr.responseText).split(";");
+				document.getElementById("secondary").innerHTML=arr[0];
+				document.getElementById("logo").innerHTML=arr[3];
+				document.getElementById("links").innerHTML=arr[3];
+				document.getElementById("audio").innerHTML=arr[3];
+				document.getElementById("picture").innerHTML=arr[3]; 
+				setTimeout(getPic, 4000);	
+		  }
+		
+		
+		}
+		function getPic(){
+		
+			xhr.open("GET", "image.txt", true);
+			xhr.onreadystatechange = showImg;
+			xhr.send(null);
+		
+		
+		}
+		function showImg()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				document.getElementById("picture").innerHTML = xhr.responseText;	
+			}
+			setTimeout(getLinks,2000);
+			
+		}
+		function getLinks(){
+		
+				xhr.onreadystatechange=showLinks;
+				xhr.open("GET","links.txt",true);
+				xhr.send();
+		}
+		function showLinks(){
+		
+				if(xhr.readyState==4 && xhr.status==200){
+					document.getElementById("links").innerHTML=xhr.responseText
+					//TODO:
+					setTimeout(getAudio,4000);
+				}
+		
+		
+		}
+		//TODO:Write code to fetch audio
+		function getAudio(){}
+
+
+</script>
+</head >
+<body onload="init()">
+<div id="doc" class="yui-t7">
+  <div id="hd">
+    <div id="header"><h1>Multi Stage</h1><div id="logo"></div></div>
+  </div>
+  <div id="bd">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div class="yui-gb">
+          <div class="yui-u first">
+		  <div class="content" id="picture">Picture</div>
+            
+          </div>
+          <div class="yui-u">
+            <div class="content" id="links">Links</div>
+          </div>
+          <div class="yui-u">
+            <div class="content" id="audio">Audio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="yui-b">
+      <div id="secondary">Text Content</div>
+    </div>
+  </div>
+  <div id="ft">
+    <div id="footer">Footer</div>
+  </div>
+</div>
+</body>
+</html>

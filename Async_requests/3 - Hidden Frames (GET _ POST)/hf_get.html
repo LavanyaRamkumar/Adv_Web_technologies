@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			function getDetails(){
+				
+				var srn=document.getElementById("srn")
+				var hf=document.getElementById("hframe")
+				hf.src="https://api.github.com"
+				
+			}
+			function displayDetails(res){
+				var resArr=res.split(";");
+				document.getElementById("sname").value=resArr[1];
+				document.getElementById("cgpa").value=resArr[2];
+				document.getElementById("srn").value=resArr[0];
+				
+			
+			}
+		
+		</script>
+	</head>
+	<body>
+	<form>
+		SRN:<input type="text" name="srn" id="srn" onblur="getDetails()"/><br/>
+		Name:<input type="text" name="sname" id="sname"/><br/>
+		CGPA:<input type="text" name="cgpa" id="cgpa"/><br/>
+		<input type="button" onclick="formSubmit" value="SUBMIT"/>
+		<iframe id="hframe" name="hframe" height="0" width="0"></iframe>
+	</form>
+
+
+	</body>
+</html>

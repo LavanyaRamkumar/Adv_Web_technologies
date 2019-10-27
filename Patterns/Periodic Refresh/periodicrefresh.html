@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		 #scoreboard{
+			height:100px;
+			width:500px;
+			border:3px solid orange;
+			padding:60px;
+		 } 
+		 .score{
+			height: 200px;
+			width: 200px;
+			border:2px solid grey;
+			margin:10px;
+			padding:20px;
+			font-size:24pt;
+			font-weight:bold;
+			font-family:verdana;
+			display:inline;	
+		 }
+		</style>
+		<script>
+		xhr=new XMLHttpRequest();
+		var n=2;
+		function fetch(){
+			xhr.onreadystatechange=showScores;
+			xhr.timeout=6000;
+			xhr.ontimeout=backoff;
+			xhr.open("GET","http://localhost/web2/day9/pr.php",true);
+			xhr.send();
+		}
+		function showScores(){
+			if(xhr.readyState==4 && xhr.status==200){
+				var res=xhr.responseText;
+				var resArr=res.split(";"); 
+				document.getElementById("score1").innerHTML=resArr[0];
+				document.getElementById("score2").innerHTML=resArr[1];
+				document.getElementById("score3").innerHTML=resArr[2];
+				document.getElementById("score3").innerHTML=resArr[2];
+				
+				setTimeout(fetch,2000);
+				n=2;                 
+			
+			}
+		
+		
+		}
+		function backoff(){
+			console.log("failed")
+			n=n*2;
+			console.log(n);
+			setTimeout(fetch,n*1000);
+		
+		}
+			
+		</script>
+	</head>
+	<body onload="fetch()">
+	<h1>Periodic Refresh</h1>
+		<div id="scoreboard">
+			
+			<div id="score1" class="score">100</div>
+			<div id="score2" class="score">200</div>
+			<div id="score3" class="score">300</div>
+			
+			
+		</div>
+		<div id="upd">Updating..<div>
+	
+	</body>
+
+
+</html>

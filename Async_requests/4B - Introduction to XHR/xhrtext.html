@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			var obj={
+				xhr:new XMLHttpRequest(),
+				async:function(){
+				//Event occurs each time ready state changes
+				//console.log(this)//obj
+					this.xhr.onreadystatechange=this.update;
+					this.xhr.open("GET","ajax.txt",true);
+					this.xhr.send();
+				},
+				update:function(){
+				//Status is checked to indicate that request was //successful
+				//console.log(this)//xhr
+					if(this.readyState==4 && this.status==200){
+						var res=this.responseText;
+						console.log(res);
+					
+					}
+				}
+			
+			
+			}
+		
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="obj.async()" value="Click Me"/> 
+
+
+
+
+	</body>
+</html>

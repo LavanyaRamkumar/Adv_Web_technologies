@@ -1,0 +1,38 @@
+<script>
+//Two JavaSCript objects create using literals.
+/*POint to ponder
+	1. WHen is this a good approach
+	2. What are the disadvantages of this aprroach
+	3. Do these object inherit from other objects? If so, from where?
+	4. Invoke the toString function on person1. WHy do you get a result?
+	5. Try overriding the toString method
+	*/
+	var person1={fname:"abc",
+				 lname:"def",
+				 age:23}
+	console.log(person1)
+	var person2={fname:"lmno",
+				 lname:"pqrs",
+				 age:34,
+				 toString:function(){
+				  return "I am a person"
+				 },
+				 greet:function(){
+					return "Good Morning"
+				 }
+				} 
+	function hi(){
+	
+	}			 
+	console.log(person2.toString())
+	console.log(person1.toString())
+	console.log(person2.greet())
+	console.log(person1.greet())
+	console.log(person1 instanceof Object)
+	console.log(typeof(person1))
+	console.log(typeof(person1.toString))
+	
+	
+
+
+</script>

@@ -1,0 +1,29 @@
+<script>
+	//This th edemo program done for call and apply in class. To further understand the difference between call and apply please read this link http://hangar.runway7.net/javascript/difference-call-apply */
+	function Person(fname,lname,age){
+		this.fname=fname;
+		this.lname=lname;
+		this.age=age;
+	}
+	
+	Person.prototype.sayName=function(){
+		 console.log("hi "+this.fname)
+		}
+	var person1=new Person("abc","def",23)
+	var person2=new Person("lmno","pqrd",33)
+	
+	function sayHello(){
+		console.log("Hello"+this.fname)
+	}
+	function sayGoodBye(){
+		console.log("GoodBye"+this.fname)
+	}
+	function greet(){
+		console.log(arguments[0]+this.fname)
+	}
+	sayGoodBye.call(person1)
+	//greet.call(person1,"Morn","Even")
+	//greet.call(person1,["Morn","Even"])
+	//greet.apply(person1,["Morn","Even"])
+	//greet.call(person2,"Even")
+</script>

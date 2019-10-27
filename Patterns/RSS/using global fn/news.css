@@ -1,0 +1,14 @@
+#outer
+{
+	height:25px;
+	border-top: 2px solid red;
+	border-bottom: 2px solid red;
+	border-left: transparent;
+	border-right: transparent;
+}
+
+#inner
+{
+	position: absolute;
+	white-space:nowrap;
+}

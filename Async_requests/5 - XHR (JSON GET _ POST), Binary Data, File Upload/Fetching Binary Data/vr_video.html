@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+		var obj={
+			xhr:new XMLHttpRequest(),
+			getVideo:function(){
+				this.xhr.onreadystatechange=this.showVideo;
+				this.xhr.open("GET","vr_video.php",true);
+				this.xhr.responseType="blob";
+				this.xhr.send();
+			
+			},
+			showVideo:function(){
+			var vid=document.createElement("video");
+					vid.controls=true;
+				while(this.readyState==3){
+					var res=this.response;
+					//See document in folder for explanation of createObject URL
+					vid.src=window.URL.createObjectURL(res);
+					
+					
+				
+				}
+				document.body.appendChild(vid);
+			
+			}
+		
+		}
+		
+		</script>
+	</head>
+	<body>
+
+		<input type="button" onclick="obj.getVideo()"/>
+
+
+
+	</body>
+</html>
