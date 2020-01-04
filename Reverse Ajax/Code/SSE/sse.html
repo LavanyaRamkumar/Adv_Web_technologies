@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+		var obj={
+		
+			monitor:function(){
+				var ev=new EventSource("sse.php");
+				ev.addEventListener("message",this.show,false);
+				ev.onerror=this.err;
+			
+			
+			},
+			show:function(e){
+			    console.log(e.data);
+				document.getElementById("count").innerHTML=e.data;	
+			
+			},
+			err:function(){
+				console.log("error");
+			}
+		
+		}
+		
+		</script>
+	</head>
+	<body onload="obj.monitor()">
+
+		<div id="count"></div>
+
+
+
+	</body>
+</html>

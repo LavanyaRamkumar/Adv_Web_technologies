@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			//var t;
+			var obj={
+				xhr:new XMLHttpRequest(),
+				t:0,
+				getData:function(){
+					this.xhr.onreadystatechange=this.showData;
+					this.xhr.open("GET","xhr_lp.php?time="+this.t,true);
+					this.xhr.send();
+				
+				},
+				showData:function(){
+					if(this.readyState==4 && this.status==200){
+						var res=this.responseText;
+					if(res.indexOf("Fatal")== -1)	
+						{var resArr=res.split(";");
+						
+						document.getElementById("content").innerHTML=resArr[0];
+						document.getElementById("mod").innerHTML=resArr[1]
+						obj.t=resArr[1];
+						//console.log(obj.xhr)
+						
+						
+					}
+					 obj.getData(obj.t);
+					}
+				}
+				
+				
+			}
+		
+		</script>
+	</head>
+	<body onload="obj.getData()">
+		<div id="content"></div>
+		<div id="title"><b>Last Modified At :</b></div>
+		<div id="mod"><b></b></div>
+
+
+
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<html ng-app="notesApp">
+<head><title>Notes App</title></head>
+<body ng-controller="MainCtrl as ctrl">
+<form name="myForm">
+<input type="text" ng-model="ctrl.usr.username" name="uname" required
+ng-minlength="4" />   
+<!--***the value will not get saved into the variable untill the requirements are cleared-->
+
+
+		<span ng-show="myForm.uname.$error.required">This field is required</span>	
+		<span ng-show="myForm.uname.$error.minlength">This field should be 4</span>	
+<input type="text" ng-model="ctrl.usr.password"/>
+</br>
+<p>{{ctrl.usr.username}}</p>
+
+<input type="submit" ng-disabled="myForm.$invalid" ng-click="ctrl.submitValue()"/>
+</form>
+You typed {{ctrl.usr.username}}    
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+</script>
+<script type="text/javascript">
+angular.module('notesApp', [])
+.controller('MainCtrl', [function() {
+self=this;
+/*self.username = 'nothing';
+self.password = 'nothing';
+self.changeValue=function(){
+	self.usr.username = 'something';
+	self.usr.password = 'something';
+
+}*/
+self.submitValue=function(){
+	console.log("user typed",self.usr);
+}
+}]);
+</script>
+</body>
+</html>

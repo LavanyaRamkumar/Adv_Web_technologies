@@ -1,0 +1,4 @@
+RewriteEngine ON
+
+RewriteRule ^getdetails/usn/([0-9]+)  service.php?usn=$1
+RewriteRule ^update  service.php

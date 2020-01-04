@@ -1,0 +1,24 @@
+<html ng-app="notesapp">
+	<body ng-controller="MainCtrl as ctrl">
+		
+		<h1>Hello {{ctrl.message}} </h1>
+		<button ng-click="ctrl.chngMessage()">Change</button>
+	</body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+		
+	</script>
+<script>
+angular.module("notesapp",[]).controller("MainCtrl",[function(){
+	var self=this;
+	self.message="hi"
+	self.chngMessage=function(){
+		self.message="bye"
+	
+	}
+	
+}])
+</script>
+
+
+</html>

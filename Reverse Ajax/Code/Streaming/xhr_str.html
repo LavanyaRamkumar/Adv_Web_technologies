@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+		var obj={
+			xhr:new XMLHttpRequest(),
+			strlen:0,
+			monitor:function(){
+				this.xhr.onreadystatechange=this.showText;
+				this.xhr.open("GET","xhr_str.php",true);
+				this.xhr.send();
+			},
+			showText:function(){
+				if(this.readyState==3 && this.status==200){
+					var res=this.responseText;
+					
+					if(res.indexOf("Fatal")== -1){
+					
+						var newdiv=document.createElement("div");
+						newdiv.innerHTML=res.slice(obj.strlen);
+						document.body.appendChild(newdiv);
+						obj.strlen=res.length;
+						console.log(obj.strlen)
+					}
+					else{
+						obj.monitor();
+					}
+				
+				
+				}
+				if(this.readyState==4 && this.status==200){
+				
+					this.abort();
+					obj.monitor();
+				}
+			}
+		
+		
+		
+		
+		}	
+		
+		</script>
+	</head>
+	<body onload="obj.monitor()">
+		
+			
+	</body>
+</html>

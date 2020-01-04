@@ -1,0 +1,10 @@
+The topics we covered in Web Services  include
+
+Introduction to web services
+Difference between web service,website and web application
+RESTful web services
+Definition of Resource,Representation & Connector
+REST – Architectural Constraints/Principles
+URI Mapping (.htaccess)
+Designing a RESTful Web Service & Consuming it
+Understanding SOAP based Web Services - wsdl files

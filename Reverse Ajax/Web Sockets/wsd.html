@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		</style>
+		<script>
+			function wsocket(){
+				var wsURI="ws://localhost:12345/ws.php";
+				websocket=new WebSocket(wsURI);
+				websocket.onopen=function (ev){
+				
+				 alert("connected");
+				 
+				}
+				websocket.onclose=function (ev){
+				
+				 alert("connection closed");
+				 
+				}
+				websocket.onerror=function (ev){
+				
+				 alert("problem")
+				 
+				}
+				websocket.onmessage=function(ev){
+				
+					console.log("Message"+ev.data);
+				}
+		
+			}
+			function sendMessage(){
+			
+				var msg=document.getElementById("msg").value;
+				websocket.send  (msg);
+			}
+		
+		</script>
+	</head>
+	<body onload="wsocket()">
+
+		<input type="text" id="msg" onblur="sendMessage()"/>
+
+
+
+	</body>
+</html>
